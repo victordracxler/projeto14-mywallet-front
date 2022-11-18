@@ -1,13 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SignInForm from '../components/SignInForm';
 
 export default function SignInPage() {
+	const navigate = useNavigate();
 	return (
 		<>
 			<LogoTitle>MyWallet</LogoTitle>
 			<SignInForm />
 
-			<SignUpLink>Primeira vez? Cadastre-se!</SignUpLink>
+			<SignUpLink onClick={() => navigate('/cadastro')}>
+				Primeira vez? Cadastre-se!
+			</SignUpLink>
 		</>
 	);
 }
