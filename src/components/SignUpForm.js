@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { FormBttn, FormInput, FormWrapper } from './SignInForm';
 
 export default function SignUpForm() {
@@ -28,10 +27,10 @@ export default function SignUpForm() {
 			.post(url, body)
 			.then((res) => {
 				console.log(res.data);
-				// navigate('/');
+				navigate('/');
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.response.data);
 			});
 	}
 

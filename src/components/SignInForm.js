@@ -1,12 +1,53 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function SignInForm() {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const navigate = useNavigate();
+
+	function handleSignIn(e) {
+		e.preventDefault();
+
+		const url = 'http://localhost:5000/signin';
+
+		const body = {
+			email: email,
+			password: password,
+		};
+
+		const promise = axios
+			.post(url, body)
+			.then((res) => {
+				console.log(res.data);
+				// navigate('/');
+			})
+			.catch((err) => {
+				console.log(err.response.data);
+			});
+	}
+
 	return (
 		<>
-			<FormWrapper action="">
-				<FormInput type="email" placeholder="E-mail" required />
+			<FormWrapper onSubmit={handleSignIn}>
+				<FormInput
+					type="email"
+					placeholder="E-mail"
+					required
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
 
-				<FormInput type="password" placeholder="Senha" required />
+				<FormInput
+					type="password"
+					placeholder="Senha"
+					required
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+				/>
 				<FormBttn type="submit">Entrar</FormBttn>
 			</FormWrapper>
 		</>
