@@ -10,7 +10,7 @@ export default function SignInForm() {
 
 	const navigate = useNavigate();
 
-	const { setToken, setBearer, setUser } = useContext(UserContext);
+	const { setBearer, setUser } = useContext(UserContext);
 
 	function handleSignIn(e) {
 		e.preventDefault();
@@ -27,7 +27,7 @@ export default function SignInForm() {
 			.then((res) => {
 				console.log(res.data);
 				const newBearer = `Bearer ${res.data.token}`;
-				setToken(res.data.token);
+
 				setBearer(newBearer);
 				localStorage.setItem('mwtoken', JSON.stringify(newBearer));
 				setUser(res.data.username);

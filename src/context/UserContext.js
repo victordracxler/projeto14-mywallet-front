@@ -9,7 +9,7 @@ function UserProvider({ children }) {
 			? JSON.parse(localStorage.getItem('mwuser'))
 			: {}
 	);
-	const [token, setToken] = useState('');
+
 	const [bearer, setBearer] = useState(
 		localStorage.getItem('mwtoken')
 			? JSON.parse(localStorage.getItem('mwtoken'))
@@ -21,8 +21,6 @@ function UserProvider({ children }) {
 			value={{
 				user,
 				setUser,
-				token,
-				setToken,
 				bearer,
 				setBearer,
 			}}
