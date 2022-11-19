@@ -5,8 +5,14 @@ const UserContext = createContext();
 
 function UserProvider({ children }) {
 	const [user, setUser] = useState(
-		localStorage.getItem('user')
-			? JSON.parse(localStorage.getItem('user'))
+		localStorage.getItem('mwuser')
+			? JSON.parse(localStorage.getItem('mwuser'))
+			: {}
+	);
+	const [token, setToken] = useState('');
+	const [bearer, setBearer] = useState(
+		localStorage.getItem('mwtoken')
+			? JSON.parse(localStorage.getItem('mwtoken'))
 			: {}
 	);
 
@@ -15,9 +21,17 @@ function UserProvider({ children }) {
 			value={{
 				user,
 				setUser,
+				token,
+				setToken,
+				bearer,
+				setBearer,
 			}}
 		>
 			{children}
 		</UserContext.Provider>
 	);
 }
+
+export default UserContext;
+
+export { UserProvider };

@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import UserContext from '../context/UserContext';
 
 export default function SignInForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	const navigate = useNavigate();
+
+	const { setToken, setBearer } = useContext(UserContext);
 
 	function handleSignIn(e) {
 		e.preventDefault();
@@ -22,8 +25,11 @@ export default function SignInForm() {
 		const promise = axios
 			.post(url, body)
 			.then((res) => {
-				console.log(res.data);
-				// navigate('/');
+				const newBearer = `Bearer ${res.data}`;
+				setToken(res.data);
+				setBearer(newBearer);
+				localStorage.setItem('mwtoken', JSON.stringify(newBearer));
+				navigate('/home');
 			})
 			.catch((err) => {
 				console.log(err.response.data);
