@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import TransactionsBoard from '../components/TransactionsBoard';
+import UserContext from '../context/UserContext';
 
 export default function MainPage() {
+	const { user } = useContext(UserContext);
+
 	return (
 		<PageWrapper>
 			<Title>
-				<h1>Olá, Fulano</h1>
+				<h1>Olá, {user}</h1>
 				<ion-icon name="exit-outline"></ion-icon>
 			</Title>
 

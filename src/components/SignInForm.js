@@ -10,7 +10,7 @@ export default function SignInForm() {
 
 	const navigate = useNavigate();
 
-	const { setToken, setBearer } = useContext(UserContext);
+	const { setToken, setBearer, setUser } = useContext(UserContext);
 
 	function handleSignIn(e) {
 		e.preventDefault();
@@ -25,10 +25,16 @@ export default function SignInForm() {
 		const promise = axios
 			.post(url, body)
 			.then((res) => {
-				const newBearer = `Bearer ${res.data}`;
-				setToken(res.data);
+				console.log(res.data);
+				const newBearer = `Bearer ${res.data.token}`;
+				setToken(res.data.token);
 				setBearer(newBearer);
 				localStorage.setItem('mwtoken', JSON.stringify(newBearer));
+				setUser(res.data.username);
+				localStorage.setItem(
+					'mwuser',
+					JSON.stringify(res.data.username)
+				);
 				navigate('/home');
 			})
 			.catch((err) => {
