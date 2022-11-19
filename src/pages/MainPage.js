@@ -6,6 +6,7 @@ import UserContext from '../context/UserContext';
 
 export default function MainPage() {
 	const { user } = useContext(UserContext);
+	const navigate = useNavigate();
 
 	return (
 		<PageWrapper>
@@ -17,11 +18,19 @@ export default function MainPage() {
 			<TransactionsBoard />
 
 			<BttnsWrapper>
-				<AddEntryBttn>
+				<AddEntryBttn
+					onClick={() =>
+						navigate('/new-entry', { state: { type: 'in' } })
+					}
+				>
 					<ion-icon name="add-circle-outline"></ion-icon>
 					<h2>Nova entrada</h2>
 				</AddEntryBttn>
-				<AddEntryBttn>
+				<AddEntryBttn
+					onClick={() =>
+						navigate('/new-entry', { state: { type: 'out' } })
+					}
+				>
 					<ion-icon name="remove-circle-outline"></ion-icon>
 					<h2>Nova saída</h2>
 				</AddEntryBttn>
@@ -30,7 +39,7 @@ export default function MainPage() {
 	);
 }
 
-const PageWrapper = styled.div`
+export const PageWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -38,22 +47,19 @@ const PageWrapper = styled.div`
 	font-family: 'Raleway', sans-serif;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 326px;
 	margin-bottom: 22px;
+	color: #ffffff;
+	font-size: 26px;
 
 	h1 {
 		font-weight: 700;
-		font-size: 26px;
+
 		line-height: 31px;
-		color: #ffffff;
-	}
-	ion-icon {
-		color: #ffffff;
-		font-size: 26px;
 	}
 `;
 
@@ -65,7 +71,7 @@ const BttnsWrapper = styled.div`
 	margin-top: 13px;
 `;
 
-const AddEntryBttn = styled.div`
+export const AddEntryBttn = styled.div`
 	width: 155px;
 	height: 114px;
 	background-color: #a328d6;
