@@ -5,8 +5,19 @@ import TransactionsBoard from '../components/TransactionsBoard';
 import UserContext from '../context/UserContext';
 
 export default function MainPage() {
-	const { user } = useContext(UserContext);
+	const { user, bearer } = useContext(UserContext);
 	const navigate = useNavigate();
+
+	if (!user && !bearer) {
+		return navigate('/');
+	}
+
+	function signOut() {
+		// localStorage.removeItem('mwuser');
+		// localStorage.removeItem('mwtoken');
+		localStorage.clear();
+		return navigate('/');
+	}
 
 	return (
 		<PageWrapper>
@@ -23,7 +34,10 @@ export default function MainPage() {
 						navigate('/new-entry', { state: { type: 'in' } })
 					}
 				>
-					<ion-icon name="add-circle-outline"></ion-icon>
+					<ion-icon
+						name="add-circle-outline"
+						onClick={() => signOut()}
+					></ion-icon>
 					<h2>Nova entrada</h2>
 				</AddEntryBttn>
 				<AddEntryBttn

@@ -8,10 +8,6 @@ export default function SignInPage() {
 	const navigate = useNavigate();
 	const { user, bearer } = useContext(UserContext);
 
-	// const userStorage = localStorage.getItem('mwuser');
-	// const tokenStorage = localStorage.getItem('mwtoken');
-	// console.log(userStorage, tokenStorage);
-
 	if (user && bearer) {
 		navigate('/home');
 	}

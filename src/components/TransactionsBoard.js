@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import UserContext from '../context/UserContext';
 import IndividualEntry from './IndividualEntry';
+import TotalBalance from './TotalBalance';
 
 export default function TransactionsBoard() {
 	const [entryList, setEntryList] = useState([]);
@@ -19,7 +20,6 @@ export default function TransactionsBoard() {
 			.get(url, { headers })
 			.then((res) => {
 				setEntryList(res.data);
-				console.log(res.data);
 			})
 			.catch((err) => {
 				console.log(err.response);
@@ -33,20 +33,6 @@ export default function TransactionsBoard() {
 			return entryList?.map(IndividualEntry);
 		}
 	}
-	function TotalSum() {
-		if (entryList.length === 0) return 0;
-		let sum = 0;
-
-		for (let i = 0; i < entryList.length; i++) {
-			if (entryList[i].type === 'in') {
-				sum += Number(entryList[i].amount);
-			} else if (entryList[i].type === 'out') {
-				sum -= Number(entryList[i].amount);
-			}
-		}
-		console.log('sum', sum);
-		return sum;
-	}
 
 	return (
 		<>
@@ -54,12 +40,7 @@ export default function TransactionsBoard() {
 				<EntryListUl>
 					<ShowMessage />
 				</EntryListUl>
-				<Balance>
-					<h1>Saldo</h1>
-					<h2>
-						<TotalSum />
-					</h2>
-				</Balance>
+				<TotalBalance entryList={entryList} />
 			</Board>
 		</>
 	);
@@ -81,22 +62,4 @@ const EntryListUl = styled.ul`
 	height: 400px;
 	overflow-y: scroll;
 	color: #000000;
-`;
-
-const Balance = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	font-size: 17px;
-	background-color: #ffffff;
-	margin-top: 5px;
-
-	h1 {
-		color: #000000;
-		font-weight: 700;
-	}
-
-	h2 {
-		font-weight: 400;
-	}
 `;

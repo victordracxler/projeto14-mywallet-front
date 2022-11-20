@@ -43,6 +43,7 @@ export default function AddEntryForm(props) {
 			<FormWrapper onSubmit={handleSubmit}>
 				<FormInput
 					type="number"
+					step="any"
 					placeholder="Valor"
 					required
 					value={amount}

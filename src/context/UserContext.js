@@ -6,13 +6,13 @@ function UserProvider({ children }) {
 	const [user, setUser] = useState(
 		localStorage.getItem('mwuser')
 			? JSON.parse(localStorage.getItem('mwuser'))
-			: {}
+			: undefined
 	);
 
 	const [bearer, setBearer] = useState(
 		localStorage.getItem('mwtoken')
 			? JSON.parse(localStorage.getItem('mwtoken'))
-			: {}
+			: undefined
 	);
 
 	return (
