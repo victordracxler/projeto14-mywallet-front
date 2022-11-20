@@ -6,6 +6,8 @@ export default function IndividualEntry(props) {
 
 	const formatDate = dayjs(date).format('DD/MM');
 
+	const amountNumber = Number(amount);
+
 	return (
 		<Row key={_id} type={type}>
 			<div className="date-desc-container">
@@ -13,7 +15,7 @@ export default function IndividualEntry(props) {
 				<div className="description">{description}</div>
 			</div>
 
-			<div className="amount">{amount}</div>
+			<div className="amount">{amountNumber.toFixed(2)}</div>
 		</Row>
 	);
 }

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export default function TotalBalance(props) {
 	const { entryList } = props;
-	console.log(entryList);
 
 	const colorCodes = {
 		black: '#000000',
