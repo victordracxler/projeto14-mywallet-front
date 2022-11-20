@@ -1,9 +1,21 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SignInForm from '../components/SignInForm';
+import UserContext from '../context/UserContext';
 
 export default function SignInPage() {
 	const navigate = useNavigate();
+	const { user, bearer } = useContext(UserContext);
+
+	// const userStorage = localStorage.getItem('mwuser');
+	// const tokenStorage = localStorage.getItem('mwtoken');
+	// console.log(userStorage, tokenStorage);
+
+	if (user && bearer) {
+		navigate('/home');
+	}
+
 	return (
 		<>
 			<LogoTitle>MyWallet</LogoTitle>
