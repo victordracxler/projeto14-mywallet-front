@@ -16,7 +16,7 @@ export default function MainPage() {
 		// localStorage.removeItem('mwuser');
 		// localStorage.removeItem('mwtoken');
 		localStorage.clear();
-		return navigate('/');
+		navigate('/');
 	}
 
 	return (

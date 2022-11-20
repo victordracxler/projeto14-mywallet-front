@@ -65,7 +65,7 @@ export default function SignUpForm() {
 					value={repeatPassword}
 					onChange={(e) => setRepeatPassword(e.target.value)}
 				/>
-				<FormBttn type="submit">Entrar</FormBttn>
+				<FormBttn type="submit">Cadastrar</FormBttn>
 			</FormWrapper>
 		</>
 	);

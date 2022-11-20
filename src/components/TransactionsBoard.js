@@ -34,13 +34,26 @@ export default function TransactionsBoard() {
 		}
 	}
 
+	function IsEmpty() {
+		if (entryList.length === 0) {
+			return (
+				<EmptyMessage>
+					Não há registros de entrada ou saída
+				</EmptyMessage>
+			);
+		}
+		return (
+			<>
+				<EntryListUl>{entryList?.map(IndividualEntry)}</EntryListUl>
+				<TotalBalance entryList={entryList} />
+			</>
+		);
+	}
+
 	return (
 		<>
 			<Board>
-				<EntryListUl>
-					<ShowMessage />
-				</EntryListUl>
-				<TotalBalance entryList={entryList} />
+				<IsEmpty />
 			</Board>
 		</>
 	);
@@ -62,4 +75,17 @@ const EntryListUl = styled.ul`
 	height: 400px;
 	overflow-y: scroll;
 	color: #000000;
+`;
+
+const EmptyMessage = styled.div`
+	width: 180px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 23px;
+	text-align: center;
+	color: #868686;
 `;

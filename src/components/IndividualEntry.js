@@ -13,7 +13,7 @@ export default function IndividualEntry(props) {
 				<div className="description">{description}</div>
 			</div>
 
-			<div className="amount">{amount.toFixed(2)}</div>
+			<div className="amount">{amount}</div>
 		</Row>
 	);
 }
