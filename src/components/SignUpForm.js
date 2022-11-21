@@ -14,7 +14,7 @@ export default function SignUpForm() {
 	function handleSignUp(e) {
 		e.preventDefault();
 
-		const url = 'http://localhost:5000/signup';
+		const url = 'https://api-mywallet.onrender.com/signup';
 
 		const body = {
 			username: username,

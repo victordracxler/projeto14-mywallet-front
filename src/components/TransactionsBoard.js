@@ -14,7 +14,7 @@ export default function TransactionsBoard() {
 			Authorization: bearer,
 		};
 
-		const url = 'http://localhost:5000/entries';
+		const url = 'https://api-mywallet.onrender.com/entries';
 
 		axios
 			.get(url, { headers })

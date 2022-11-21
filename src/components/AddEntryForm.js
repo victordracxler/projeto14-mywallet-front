@@ -22,7 +22,7 @@ export default function AddEntryForm(props) {
 			description,
 		};
 
-		const url = 'http://localhost:5000/add-entry';
+		const url = 'https://api-mywallet.onrender.com/add-entry';
 		const headers = {
 			Authorization: bearer,
 		};
